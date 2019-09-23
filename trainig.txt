@@ -1,0 +1,448 @@
+[root@server1 ~]# pwd
+/root
+[root@server1 ~]# cd /phabricator/phabricator/
+[root@server1 phabricator]# ./bin/auth recover phadmin
+Use this link to recover access to the "phadmin" account from the web interface:
+
+    http://phabricator.demo.lab/login/once/recover/1/xpn4eca2xvzdptlrkg42l53saoqdmoo3/
+
+After logging in, you can use the "Auth" application to add or restore authentication providers and allow normal logins to succeed.
+[root@server1 phabricator]# ^C
+[root@server1 phabricator]# ./bin/ph
+phd       phortune  
+[root@server1 phabricator]# ./bin/ph
+phd       phortune  
+[root@server1 phabricator]# ./bin/phd start
+Freeing active task leases...
+Freed 0 task lease(s).
+Launching daemons:
+(Logs will appear in "/var/tmp/phd/log/daemons.log".)
+
+    (Pool: 1) PhabricatorRepositoryPullLocalDaemon
+    (Pool: 1) PhabricatorTriggerDaemon
+    (Pool: 1) PhabricatorFactDaemon
+    (Pool: 4) PhabricatorTaskmasterDaemon
+
+Done.
+[root@server1 phabricator]# ./bin/phd status
+PID  Command
+3654 php /phabricator/phabricator/scripts/daemon/phd-daemon
+[root@server1 phabricator]# ls
+bin   externals  NOTICE     resources  src      webroot
+conf  LICENSE    README.md  scripts    support
+[root@server1 phabricator]# cd ..
+[root@server1 phabricator]# ls
+arcanist  libphutil  phabricator
+[root@server1 phabricator]# mkdir /trainingDay1
+[root@server1 phabricator]# cd /trainingDay1/
+[root@server1 trainingDay1]# git clone 'https://github.com/kadamvb7/repo3.git'
+Cloning into 'repo3'...
+remote: Enumerating objects: 52, done.
+remote: Counting objects: 100% (52/52), done.
+remote: Compressing objects: 100% (28/28), done.
+remote: Total 52 (delta 15), reused 31 (delta 8), pack-reused 0
+Unpacking objects: 100% (52/52), done.
+[root@server1 trainingDay1]# ls
+repo3
+[root@server1 trainingDay1]# cd repo3/
+[root@server1 repo3]# ls
+c  conflict.txt  conflit.txt  masterFilr3  proj1  proj2  r  README.md
+[root@server1 repo3]# vi r
+[root@server1 repo3]# vi r.tt
+[root@server1 repo3]# ls
+c  conflict.txt  conflit.txt  masterFilr3  proj1  proj2  r  README.md
+[root@server1 repo3]# vi dev1.txt
+[root@server1 repo3]# git add dev1.txt
+[root@server1 repo3]# git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   dev1.txt
+#
+[root@server1 repo3]# git commit -m 'dev 1 added'
+[master e6f5ff2] dev 1 added
+ Committer: root <root@server1.pune.cdac.in>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+ create mode 100644 dev1.txt
+[root@server1 repo3]# git commit -m 'dev 1 added'
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+nothing to commit, working directory clean
+[root@server1 repo3]# git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+nothing to commit, working directory clean
+[root@server1 repo3]# ls
+c  conflict.txt  conflit.txt  dev1.txt  masterFilr3  proj1  proj2  r  README.md
+[root@server1 repo3]# vi .arcconfig
+[root@server1 repo3]# arc
+bash: arc: command not found...
+[root@server1 repo3]# export PATH = $PATH:/phabricator/arcanist/bin/
+bash: export: `=': not a valid identifier
+bash: export: `/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/root/bin:/phabricator/arcanist/bin/': not a valid identifier
+[root@server1 repo3]# ^C
+[root@server1 repo3]# vi phabricator
+[root@server1 repo3]# arc diff
+bash: arc: command not found...
+[root@server1 repo3]# export PATH=$PATH:/phabricator/arcanist/bin/
+[root@server1 repo3]# arc diff
+Usage Exception: This command requires arc to connect to a Phabricator install, but no
+Phabricator installation is configured. To configure a Phabricator URI:
+
+  - set a default location with `arc set-config default <uri>`; or
+  - specify `--conduit-uri=uri` explicitly; or
+  - run `arc` in a working copy with an '.arcconfig'.
+
+[root@server1 repo3]# git add -A
+[root@server1 repo3]# git statssus
+git: 'statssus' is not a git command. See 'git --help'.
+[root@server1 repo3]# git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   .arcconfig
+#	new file:   phabricator
+#
+[root@server1 repo3]# git commit -m 'config'
+[master 8fd86f6] config
+ Committer: root <root@server1.pune.cdac.in>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .arcconfig
+ create mode 100644 phabricator
+[root@server1 repo3]# get status
+bash: get: command not found...
+Similar command is: 'git'
+[root@server1 repo3]# git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 2 commits.
+#   (use "git push" to publish your local commits)
+#
+nothing to commit, working directory clean
+[root@server1 repo3]# arc diff
+Usage Exception: This command requires arc to connect to a Phabricator install, but no
+Phabricator installation is configured. To configure a Phabricator URI:
+
+  - set a default location with `arc set-config default <uri>`; or
+  - specify `--conduit-uri=uri` explicitly; or
+  - run `arc` in a working copy with an '.arcconfig'.
+
+[root@server1 repo3]# ls
+c             conflit.txt  masterFilr3  proj1  r
+conflict.txt  dev1.txt     phabricator  proj2  README.md
+[root@server1 repo3]# vi arcconfig
+[root@server1 repo3]# ls
+arcconfig  conflict.txt  dev1.txt     phabricator  proj2  README.md
+c          conflit.txt   masterFilr3  proj1        r
+[root@server1 repo3]# git add -A
+[root@server1 repo3]# git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 2 commits.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   arcconfig
+#
+[root@server1 repo3]# git commit -m 'new'
+[master 400f1ef] new
+ Committer: root <root@server1.pune.cdac.in>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 4 insertions(+)
+ create mode 100644 arcconfig
+[root@server1 repo3]# git push
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Username for 'https://github.com': arc diff
+Password for 'https://arc diff@github.com': 
+[root@server1 repo3]# git push
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Username for 'https://github.com': kadamvb7
+Password for 'https://kadamvb7@github.com': 
+Counting objects: 11, done.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (10/10), 869 bytes | 0 bytes/s, done.
+Total 10 (delta 3), reused 0 (delta 0)
+remote: Resolving deltas: 100% (3/3), completed with 1 local object.
+To https://github.com/kadamvb7/repo3.git
+   be78b1c..400f1ef  master -> master
+[root@server1 repo3]# vi arcconfig 
+[root@server1 repo3]# arc diff
+Usage Exception: This command requires arc to connect to a Phabricator install, but no
+Phabricator installation is configured. To configure a Phabricator URI:
+
+  - set a default location with `arc set-config default <uri>`; or
+  - specify `--conduit-uri=uri` explicitly; or
+  - run `arc` in a working copy with an '.arcconfig'.
+
+[root@server1 repo3]# export PATH=$PATH:/phabricator/arcanist/bin/
+[root@server1 repo3]# arc diff
+Usage Exception: This command requires arc to connect to a Phabricator install, but no
+Phabricator installation is configured. To configure a Phabricator URI:
+
+  - set a default location with `arc set-config default <uri>`; or
+  - specify `--conduit-uri=uri` explicitly; or
+  - run `arc` in a working copy with an '.arcconfig'.
+
+[root@server1 repo3]# git add -A
+[root@server1 repo3]# git commit -m 'new'
+[master c9ab7f2] new
+ Committer: root <root@server1.pune.cdac.in>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[root@server1 repo3]# git push
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Username for 'https://github.com': kadamvb7
+Password for 'https://kadamvb7@github.com': 
+Counting objects: 5, done.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 295 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/kadamvb7/repo3.git
+   400f1ef..c9ab7f2  master -> master
+[root@server1 repo3]# arc diff
+Usage Exception: This command requires arc to connect to a Phabricator install, but no
+Phabricator installation is configured. To configure a Phabricator URI:
+
+  - set a default location with `arc set-config default <uri>`; or
+  - specify `--conduit-uri=uri` explicitly; or
+  - run `arc` in a working copy with an '.arcconfig'.
+
+[root@server1 repo3]# arc diff
+Usage Exception: This command requires arc to connect to a Phabricator install, but no
+Phabricator installation is configured. To configure a Phabricator URI:
+
+  - set a default location with `arc set-config default <uri>`; or
+  - specify `--conduit-uri=uri` explicitly; or
+  - run `arc` in a working copy with an '.arcconfig'.
+
+[root@server1 repo3]# arc diff
+Usage Exception: This command requires arc to connect to a Phabricator install, but no
+Phabricator installation is configured. To configure a Phabricator URI:
+
+  - set a default location with `arc set-config default <uri>`; or
+  - specify `--conduit-uri=uri` explicitly; or
+  - run `arc` in a working copy with an '.arcconfig'.
+
+[root@server1 repo3]# vi .arcconfig 
+[root@server1 repo3]# git add -A
+[root@server1 repo3]# git commit -m 'new'
+[master bd92a94] new
+ Committer: root <root@server1.pune.cdac.in>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[root@server1 repo3]# git push
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Username for 'https://github.com': kadamvb7
+Password for 'https://kadamvb7@github.com': 
+Counting objects: 5, done.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 309 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/kadamvb7/repo3.git
+   c9ab7f2..bd92a94  master -> master
+[root@server1 repo3]# arc diff
+Usage Exception: This command requires arc to connect to a Phabricator install, but no
+Phabricator installation is configured. To configure a Phabricator URI:
+
+  - set a default location with `arc set-config default <uri>`; or
+  - specify `--conduit-uri=uri` explicitly; or
+  - run `arc` in a working copy with an '.arcconfig'.
+
+[root@server1 repo3]# vi .arcconfig 
+[root@server1 repo3]# git add -A
+[root@server1 repo3]# git commit -m 'new'
+[master 22b64f7] new
+ Committer: root <root@server1.pune.cdac.in>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[root@server1 repo3]# git push
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Username for 'https://github.com': kadamvb7	
+Password for 'https://kadamvb7@github.com': 
+Counting objects: 5, done.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 308 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/kadamvb7/repo3.git
+   bd92a94..22b64f7  master -> master
+[root@server1 repo3]# arc diff
+Usage Exception: YOU NEED TO AUTHENTICATE TO CONTINUE
+
+You are trying to connect to a server (phabricator.demo.lab) that you do not have any credentials stored for.
+
+To retrieve and store credentials for this server, run this command:
+
+      $ arc install-certificate
+
+[root@server1 repo3]# arc install-certificate
+ CONNECT  Connecting to "http://phabricator.demo.lab/api/"...
+LOGIN TO PHABRICATOR
+Open this page in your browser and login to Phabricator if necessary:
+
+http://phabricator.demo.lab/conduit/login/
+
+Then paste the API Token on that page below.
+
+    Paste API Token from that page: ^C
+[root@server1 repo3]# arc install-certificate
+ CONNECT  Connecting to "http://phabricator.demo.lab/api/"...
+LOGIN TO PHABRICATOR
+Open this page in your browser and login to Phabricator if necessary:
+
+http://phabricator.demo.lab/conduit/login/
+
+Then paste the API Token on that page below.
+
+    Paste API Token from that page: cli-ov6a75nskcb5cdcd5b7loqwl4hmb
+Writing ~/.arcrc...
+ SUCCESS!  API Token installed.
+[root@server1 repo3]# arc diff
+Usage Exception: Template not edited.
+[root@server1 repo3]# arc diff
+Linting...
+No lint engine configured for this project.
+Running unit tests...
+No unit test engine is configured for this project.
+Usage Exception: No changes found. (Did you specify the wrong commit range?)
+[root@server1 repo3]# vi trainig.txt
+[root@server1 repo3]# 
+
