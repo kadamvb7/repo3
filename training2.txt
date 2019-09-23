@@ -1,4 +1,4 @@
-~]# pwd
+[root@server1 ~]# pwd
 /root
 [root@server1 ~]# cd /phabricator/phabricator/
 [root@server1 phabricator]# ./bin/auth recover phadmin
@@ -444,5 +444,124 @@ Running unit tests...
 No unit test engine is configured for this project.
 Usage Exception: No changes found. (Did you specify the wrong commit range?)
 [root@server1 repo3]# vi trainig.txt
+[root@server1 repo3]# vi trainig.txt
+[root@server1 repo3]# git add -A
+[root@server1 repo3]# git commit -m "important terminal"
+[master 3d6e911] important terminal
+ Committer: root <root@server1.pune.cdac.in>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 448 insertions(+)
+ create mode 100644 trainig.txt
+[root@server1 repo3]# git push
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+Username for 'https://github.com': kadamvb7	
+Password for 'https://kadamvb7@github.com': 
+Counting objects: 4, done.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 3.02 KiB | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/kadamvb7/repo3.git
+   22b64f7..3d6e911  master -> master
+[root@server1 repo3]# arc diff
+You have a saved revision message in '.git/arc/create-message'.
+Message begins:
+
+       first code
+
+You can use this message, or discard it.
+
+    Do you want to use this message? [Y/n] y
+
+Linting...
+No lint engine configured for this project.
+Running unit tests...
+No unit test engine is configured for this project.
+Usage Exception: No changes found. (Did you specify the wrong commit range?)
+[root@server1 repo3]# vi new.c
+[root@server1 repo3]# git add -A
+[root@server1 repo3]# git commit -m 'cccc'
+[master aa050f4] cccc
+ Committer: root <root@server1.pune.cdac.in>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+ create mode 100644 new.c
+[root@server1 repo3]# arc diff
+You have a saved revision message in '.git/arc/create-message'.
+Message begins:
+
+       first code
+
+You can use this message, or discard it.
+
+    Do you want to use this message? [Y/n] y
+
+Linting...
+No lint engine configured for this project.
+Running unit tests...
+No unit test engine is configured for this project.
+ SKIP STAGING  No staging area is configured for this repository.
+Updating commit message...
+Created a new Differential revision:
+        Revision URI: http://phabricator.demo.lab/D1
+
+Included changes:
+  A       new.c
+[root@server1 repo3]# arc land
+Landing current branch 'master'.
+ TARGET  Landing onto "master", selected by following tracking branches upstream to the closest remote.
+ REMOTE  Using remote "origin", selected by following tracking branches upstream to the closest remote.
+ FETCH  Fetching origin/master...
+This commit will be landed:
+
+      - 4b9503f first code
+
+Landing revision 'D1: first code'...
+ BUILDS  Checking build status...
+ PUSHING  Pushing changes to "origin/master".
+Username for 'https://github.com': kadamvb7
+Password for 'https://kadamvb7@github.com': 
+Counting objects: 4, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 364 bytes | 0 bytes/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/kadamvb7/repo3.git
+   3d6e911..1e65945  1e65945b65d5f4378de32775295b624a10b6a736 -> master
+ RESET  Local "master" landed into remote "origin/master", resetting local branch to remote state.
+ DONE  Landed changes.
 [root@server1 repo3]# 
 
