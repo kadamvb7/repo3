@@ -1,0 +1,132 @@
+51c4636c1bdb        app1                bridge              local
+dac722c38801        bridge              bridge              local
+69d81e22517c        host                host                local
+cae41d2ce235        net1                bridge              local
+adb89f04c094        none                null                local
+a5c1cb2a3b3b        webnet1             bridge              local
+[root@server1 connect]# docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
+e4fb5b8e94fc        mysql               "docker-entrypoint..."   5 minutes ago       Up 5 minutes        3306/tcp, 33060/tcp    mysql1
+d723849aa8ff        httpd               "httpd-foreground"       2 hours ago         Up 2 hours          0.0.0.0:3300->80/tcp   website1
+[root@server1 connect]# docker run --name p1 --network net1 -t pythondb
+(u'information_schema',)
+(u'mysql',)
+(u'performance_schema',)
+(u'studentdb',)
+(u'sys',)
+[root@server1 connect]# vi test.py 
+[root@server1 connect]# clear
+
+[root@server1 connect]# wget https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+> 
+> 
+> /
+> ^C
+[root@server1 connect]# wget "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+[root@server1 connect]# chmod +x /usr/local/bin/docker-compose 
+docker_1.txt                 Dockerfile                   
+docker-compose-Linux-x86_64  test.py                      
+[root@server1 connect]# chmod +x /usr/local/bin/docker-compose 
+[root@server1 connect]# uname -s
+Linux
+[root@server1 connect]# uname -m
+x86_64
+[root@server1 connect]# vi docker-compose.yml
+[root@server1 connect]# cat docker-compose.yml 
+version: "3"
+services:
+     web1:
+         image: httpd
+         ports:
+              - "3300.80"
+
+     web2:
+         image: nginx
+         ports:
+              - "4300.80"
+[root@server1 connect]# docker-compose up
+/usr/local/bin/docker-compose: line 1: --2019-09-24: command not found
+/usr/local/bin/docker-compose: line 2: syntax error near unexpected token `('
+/usr/local/bin/docker-compose: line 2: `Resolving github.com (github.com)... 13.234.176.102'
+[root@server1 connect]# vi docker-compose.yml 
+[root@server1 connect]# docker-compose up
+/usr/local/bin/docker-compose: line 1: --2019-09-24: command not found
+/usr/local/bin/docker-compose: line 2: syntax error near unexpected token `('
+/usr/local/bin/docker-compose: line 2: `Resolving github.com (github.com)... 13.234.176.102'
+[root@server1 connect]# docker-compose up
+/usr/local/bin/docker-compose: line 1: --2019-09-24: command not found
+/usr/local/bin/docker-compose: line 2: syntax error near unexpected token `('
+/usr/local/bin/docker-compose: line 2: `Resolving github.com (github.com)... 13.234.176.102'
+[root@server1 connect]# ^Chttps://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+[root@server1 connect]# rm -rf /usr/local/bin/docker-compose 
+[root@server1 connect]# curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   617    0   617    0     0    100      0 --:--:--  0:00:06 --:--:--   170
+100 15.4M  100 15.4M    0     0   843k      0  0:00:18  0:00:18 --:--:-- 4138k
+[root@server1 connect]# vi docker-compose.yml 
+[root@server1 connect]# docker-compose up
+bash: /usr/local/bin/docker-compose: Permission denied
+[root@server1 connect]# rm -rf /usr/local/bin/docker-compose 
+[root@server1 connect]# sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   617    0   617    0     0    101      0 --:--:--  0:00:06 --:--:--   135
+100 15.4M  100 15.4M    0     0   870k      0  0:00:18  0:00:18 --:--:-- 3898k
+[root@server1 connect]# docker-compose up
+bash: /usr/local/bin/docker-compose: Permission denied
+[root@server1 connect]# chmod +x /usr/local/bin/docker-compose 
+[root@server1 connect]# docker-compose up
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+services.web1.ports is invalid: Invalid port "3300.80", should be [[remote_ip:]remote_port[-remote_port]:]port[/protocol]
+services.web2.ports is invalid: Invalid port "4300.80", should be [[remote_ip:]remote_port[-remote_port]:]port[/protocol]
+[root@server1 connect]# docker-compose up
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+services.web1.ports is invalid: Invalid port "3300.80", should be [[remote_ip:]remote_port[-remote_port]:]port[/protocol]
+services.web2.ports is invalid: Invalid port "4300.80", should be [[remote_ip:]remote_port[-remote_port]:]port[/protocol]
+[root@server1 connect]# docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                  NAMES
+e4fb5b8e94fc        mysql               "docker-entrypoint..."   39 minutes ago      Up 39 minutes       3306/tcp, 33060/tcp    mysql1
+d723849aa8ff        httpd               "httpd-foreground"       3 hours ago         Up 3 hours          0.0.0.0:3300->80/tcp   website1
+[root@server1 connect]# vi docker-compose.yml 
+[root@server1 connect]# docker-compose up
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+services.web1.ports is invalid: Invalid port "3900.80", should be [[remote_ip:]remote_port[-remote_port]:]port[/protocol]
+services.web2.ports is invalid: Invalid port "4900.80", should be [[remote_ip:]remote_port[-remote_port]:]port[/protocol]
+[root@server1 connect]# vi docker-compose.yml 
+[root@server1 connect]# vi docker-compose.yml 
+[root@server1 connect]# docker-compose up
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+services.web1.ports contains an invalid type, it should be an array
+services.web2.ports contains an invalid type, it should be an array
+[root@server1 connect]# vi docker-compose.yml 
+[root@server1 connect]# docker-compose up
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+services.web1.ports is invalid: Invalid port "3900.80", should be [[remote_ip:]remote_port[-remote_port]:]port[/protocol]
+services.web2.ports is invalid: Invalid port "4900.80", should be [[remote_ip:]remote_port[-remote_port]:]port[/protocol]
+[root@server1 connect]# vi docker-compose.yml 
+[root@server1 connect]# docker-compose up
+Creating network "connect_default" with the default driver
+Pulling web2 (nginx:)...
+Trying to pull repository docker.io/library/nginx ... 
+latest: Pulling from docker.io/library/nginx
+b8f262c62ec6: Already exists
+a6639d774c21: Pull complete
+22a7aa8442bf: Pull complete
+Digest: sha256:9688d0dae8812dd2437947b756393eb0779487e361aa2ffbc3a529dca61f102c
+Status: Downloaded newer image for docker.io/nginx:latest
+Creating connect_web1_1 ... done
+Creating connect_web2_1 ... done
+Attaching to connect_web1_1, connect_web2_1
+web1_1  | AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.21.0.2. Set the 'ServerName' directive globally to suppress this message
+web1_1  | AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.21.0.2. Set the 'ServerName' directive globally to suppress this message
+web1_1  | [Tue Sep 24 09:35:12.882214 2019] [mpm_event:notice] [pid 1:tid 140262660342912] AH00489: Apache/2.4.41 (Unix) configured -- resuming normal operations
+web1_1  | [Tue Sep 24 09:35:12.882421 2019] [core:notice] [pid 1:tid 140262660342912] AH00094: Command line: 'httpd -D FOREGROUND'
+web1_1  | 172.21.0.1 - - [24/Sep/2019:09:36:05 +0000] "GET / HTTP/1.1" 200 45
+web1_1  | 172.21.0.1 - - [24/Sep/2019:09:36:05 +0000] "GET /favicon.ico HTTP/1.1" 404 196
+web1_1  | 172.21.0.1 - - [24/Sep/2019:09:36:05 +0000] "GET /favicon.ico HTTP/1.1" 404 196
+web2_1  | 172.21.0.1 - - [24/Sep/2019:09:36:12 +0000] "GET / HTTP/1.1" 200 612 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+web2_1  | 172.21.0.1 - - [24/Sep/2019:09:36:12 +0000] "GET /favicon.ico HTTP/1.1" 404 153 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0" "-"
+web2_1  | 2019/09/24 09:36:12 [error] 6#6: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.21.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:4900"
+
+
